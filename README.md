@@ -14,7 +14,7 @@ The bot says hello to you.
 #### Command #2 - Delete messages
 
 ```doc
-  /deleteMsgs {nbMsgs} (default : 1)
+  /delete {nbMsgs} (default : 1)
 ```
 
 | Parameter | Type     | Description                       |
