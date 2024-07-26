@@ -11,14 +11,14 @@ class Hello(commands.Cog):
         self.bot.tree.add_command(
             app_commands.Command(
                 name="hello",
-                description="Say hello!",
+                description="Say hello !",
                 callback=self.hello
             ),
             guild=discord.Object(id=self.guild_id)
         )
 
     async def hello(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f"Bonjour {interaction.user.global_name}!")
+        await interaction.response.send_message(f"Bonjour {interaction.user.global_name} !")
 
 async def setup(bot):
     guild_id = bot.guild_id

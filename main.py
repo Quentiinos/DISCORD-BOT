@@ -7,7 +7,8 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 TOKEN = config.get('CONFIG', 'TOKEN')
-GUILD_ID = config.get('CONFIG', 'GUILD_ID')
+GUILD_ID = int(config.get('CONFIG', 'GUILD_ID'))
+AFK_CHANNEL_ID = int(config.get('CONFIG', 'AFK_CHANNEL_ID'))
 
 intents = discord.Intents.all()
 
@@ -15,6 +16,7 @@ class MyBot(commands.Bot):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.guild_id = GUILD_ID
+        self.afk_channel_id = AFK_CHANNEL_ID
 
 bot = MyBot(command_prefix="/", intents=intents)
 
@@ -28,7 +30,7 @@ async def on_ready():
         print(e)
 
 async def load_extensions():
-    for extension in ["commands.hello", "commands.delete", "commands.dog", "commands.duck", "commands.fox", "commands.random",]:
+    for extension in ["commands.hello", "commands.delete", "commands.dog", "commands.duck", "commands.fox", "commands.random", "commands.afk"]:
         await bot.load_extension(extension)
 
 async def main():
