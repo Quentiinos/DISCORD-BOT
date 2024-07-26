@@ -4,14 +4,14 @@
 
 
 
-#### Command #1 - Hello
+### Command #1 - Hello
 
 ```doc
   !hello
 ```
 The bot says hello to you.
 
-#### Command #2 - Delete messages
+### Command #2 - Delete messages
 
 ```doc
   !delete {nbMsgs} (default : 1)
@@ -23,28 +23,28 @@ The bot says hello to you.
 
 Delete the desired number of messages.
 
-#### Command #3 - Random dog picture
+### Command #3 - Random dog picture
 
 ```doc
   !dog
 ```
 Send picture of random dog.
 
-#### Command #4 - Random duck picture
+### Command #4 - Random duck picture
 
 ```doc
   !duck
 ```
 Send picture of random duck.
 
-#### Command #5 - Random fox picture
+### Command #5 - Random fox picture
 
 ```doc
   !fox
 ```
 Send picture of random fox.
 
-#### Command #6 - Random duck picture
+### Command #6 - Random duck picture
 
 ```doc
   !randomNumber {min} (default : 1), {max} (default : 2)
