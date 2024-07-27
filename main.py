@@ -30,7 +30,7 @@ async def on_ready():
         print(e)
 
 async def load_extensions():
-    for extension in ["commands.hello", "commands.delete", "commands.dog", "commands.duck", "commands.fox", "commands.random", "commands.afk"]:
+    for extension in ["commands.hello", "commands.delete", "commands.animals", "commands.random", "commands.mute"]:
         await bot.load_extension(extension)
 
 async def main():
