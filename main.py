@@ -23,11 +23,14 @@ bot = MyBot(command_prefix="/", intents=intents)
 @bot.event
 async def on_ready():
     print(f'We have logged in as {bot.user}')
+
     try:
         synced = await bot.tree.sync(guild=discord.Object(id=bot.guild_id))
         print(f"{synced}")
     except Exception as e:
         print(e)
+
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Apprendre à coder en Python avec Quentinos."))
 
 async def load_extensions():
     for extension in ["commands.hello", "commands.delete", "commands.animals", "commands.random", "commands.mute"]:

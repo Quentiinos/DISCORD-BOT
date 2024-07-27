@@ -7,34 +7,28 @@ class Mute(commands.Cog):
     def __init__(self, bot, guild_id):
         self.bot = bot
         self.guild_id = guild_id
-        self.command_mute = app_commands.Command(
-            name="mute",
-            description="Mute a user for a specified duration",
-            callback=self.mute_user
-        )
-        self.command_mute.guild_only = True
-        self.command_unmute = app_commands.Command(
-            name="unmute",
-            description="Unmute a user",
-            callback=self.unmute_user
-        )
-        self.command_unmute.guild_only = True
 
+    # --------------------------------------------------------------------------- LOADING COMMANDS INTO SLASH TREE
     async def cog_load(self):
         self.bot.tree.add_command(
-            self.command_mute,
+            app_commands.Command(
+                name="mute",
+                description="Mute a user for a specified duration",
+                callback=self.mute_user
+            ),
             guild=discord.Object(id=self.guild_id)
         )
         self.bot.tree.add_command(
-            self.command_unmute,
+            app_commands.Command(
+                name="unmute",
+                description="Unmute a user",
+                callback=self.unmute_user
+            ),
             guild=discord.Object(id=self.guild_id)
         )
 
-    @app_commands.describe(
-        user="The user to mute",
-        duration="The duration in minutes to mute the user",
-        reason="The reason for muting the user"
-    )
+    # --------------------------------------------------------------------------- MUTE COMMAND
+    @app_commands.describe(user="User you want to mute", duration="Mute duration in seconds", reason="The reason why this user is muted")
     async def mute_user(self, interaction: discord.Interaction, user: discord.Member, duration: int, reason: str = "No reason provided"):
         role = discord.utils.get(interaction.guild.roles, name="Muted")
         if not role:
@@ -73,9 +67,11 @@ class Mute(commands.Cog):
         )
         await interaction.followup.send(embed=unmuted, ephemeral=True)
 
-    @app_commands.describe(
-        user="The user to unmute"
-    )
+
+
+
+    # --------------------------------------------------------------------------- UNMUTE COMMAND
+    @app_commands.describe(user="User you want to unmute")
     async def unmute_user(self, interaction: discord.Interaction, user: discord.Member):
         role = discord.utils.get(interaction.guild.roles, name="Muted")
         if role in user.roles:
@@ -89,6 +85,10 @@ class Mute(commands.Cog):
             await interaction.response.send_message(embed=unmuted, ephemeral=True)
         else:
             await interaction.response.send_message(content=f"{user.name} is not muted.", ephemeral=True)
+
+
+
+
 
 async def setup(bot):
     guild_id = bot.guild_id
