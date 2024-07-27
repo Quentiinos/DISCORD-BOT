@@ -30,7 +30,7 @@ async def on_ready():
     except Exception as e:
         print(e)
 
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Apprendre à coder en Python avec Quentinos."))
+    await bot.change_presence(activity=discord.Game(name="Python"))
 
 async def load_extensions():
     for extension in ["commands.hello", "commands.delete", "commands.animals", "commands.random", "commands.mute"]:
